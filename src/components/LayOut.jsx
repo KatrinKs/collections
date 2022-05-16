@@ -13,7 +13,7 @@ const Layout = () => {
     const dispatch = useDispatch();
     const {isAuth, email} = useAuth();
 
-    const [theme, setTheme] = useState("light");
+    const [theme, setTheme] = useState("dark");
     const switchTheme = () => {
         theme === "light" ? setTheme("dark") : setTheme("light");
     };
@@ -28,10 +28,11 @@ const Layout = () => {
         <GlobalStyles />
         <header>
             <CustomLink to="/"> <FormattedMessage id='menu_home'/> </CustomLink>
+            <CustomLink to="/collection"> My collections </CustomLink>
             <button onClick={switchTheme}><FormattedMessage id='menu_themes'/></button> 
             <button onClick={()=> dispatch(removeUser())}
             ><FormattedMessage id='menu_logout'/>{email}</button>
-            <div className='switcher'>{} Languages <select>
+            <div className='switcher'>{}<FormattedMessage id="menu_language"/><select>
                 {languages.map(({ name, code }) => (
                 <option key={code} value={code}>
                     {name}

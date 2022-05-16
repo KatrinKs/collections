@@ -1,46 +1,45 @@
-<<<<<<< HEAD
-import firebase from "../firebase";
-=======
 import {db} from "../firebase";
 import {push, set, get, child,  ref, onValue, remove, update} from "firebase/database";
 
 console.log(db)
->>>>>>> 70ced950b1b4a92c33ba52cf11b82c80b1e4abe8
 
 class DataService {
 
  constructor(path) {
-     this.basePath = path
+  console.log(path);
+  console.log(db);
+  this.basePath = path
  }
      
   ref(addition) {
-      if (addition) 
-        return ref(db, this.basePath+'/'+addition) 
-      return ref(db, this.basePath);
+    console.log(this.basePath)
+    if (addition) 
+      return ref(db, this.basePath+'/'+addition) 
+    return ref(db, this.basePath);
   }
 
   get(key) {
-    get(child(this.ref(), this.basePath+'/'+key).then((snapshot) => {
-        if (snapshot.exists()) {
-          console.log(snapshot.val());
-          return snapshot.val();
-        } else {
-          console.log("No data available");
-          return null;
-        }
-      }).catch((error) => {
-        console.error(error);
+    get(this.ref(key)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+        return snapshot.val();
+      } else {
+        console.log("No data available");
         return null;
-      }));
+      }
+    }).catch((error) => {
+      console.error(error);
+      return null;
+    });
   }
 
   create(value) {
-        return push(child(this.ref()), value).then((it) => {
-            return it.key;
-        }).catch((error) => {
-            console.log(error);
-            return null
-        });
+    return push(this.ref(), value).then((it) => {
+      return it.key;
+    }).catch((error) => {
+        console.log(error);
+        return null
+    });
   }
 
   set(key, value) {

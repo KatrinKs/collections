@@ -1,46 +1,33 @@
-//import {Navigate} from 'react-router-dom';
-//import {useDispatch} from 'react-redux';
 import {useState} from 'react';
-//import { useAuth } from 'hooks/use-auth';
-//import {removeUser} from 'store/slices/userSlice';
+import { useDispatch } from 'react-redux';
+
+import { addTodo } from 'store/collectionSlice';
+import NewCollectionForm from 'components/for_collection/NewTodoForm';
+import CollectionList from 'components/for_collection/CollectionList';
 
 const CollectionPage = () => {
-    const [names, setNames] = useState();
-    const [text, setText] = useState();
+    const [text, setText] = useState('');
+    const dispatch = useDispatch();
 
-    const add = () => {
-        if (text.trim().length) {
-        setNames([
-            ...names,
-            {
-                id: new Date().toISOString(),
-                text,
-                completed: false,
-            }
-        ])
-        setText('');
+    const handleAction = () => {
+        if(text.trim().length) {
+            dispatch(addTodo({text}));
+            setText('');
         }
     }
 
     return (
         <>
         <div>
-            <h1>My Collections</h1>
-            <label>
-                <input value={text} onChange={(e) => setText(e.target.value)} />
-                <button onClick={add}>Add</button>
-            </label>
-
-            <ul>
-                {
-                    names.map(todo => <li key={todo.id}>
-                        <input type="checkbox"/>
-                    </li>)
-                }
-            </ul>
+        <NewCollectionForm
+            value={text}
+            updateText={setText}
+            handleAction={handleAction}
+        />
+        <CollectionList />
         </div>
         </>
-    ) 
+    );
 }
 
 export default CollectionPage
