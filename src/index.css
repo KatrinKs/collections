@@ -11,3 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+header {
+  background-color: rgb(4, 97, 99);
+  padding: 2rem 0;
+  text-align: center;
+
+}
+
+header > a {
+  color: aliceblue;
+  text-decoration: none;
+  padding: 0 1 rem;
+  width: 100%;
+}
+
+header >a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: 1000px;
+  padding: 2rem 0;
+  margin: 0 auto;
+}
+
+.active-link {
+  color: rgb(29, 224, 235);
+  cursor: default;
+}
+
+.switcher select {
+  width: 99px;
+  height: 30px;
+}
