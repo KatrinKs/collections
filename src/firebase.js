@@ -19,4 +19,4 @@ const fb = initializeApp(firebaseConfig);
  */
 const db = getDatabase(fb);
 
-export {db as db};
+export {db};
