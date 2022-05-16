@@ -16,11 +16,11 @@ import { messages } from 'constants/messages';
 
 
 function App() {
-  const locale = LOCALES.RUSSIAN
+  const locale = LOCALES.ENGLISH
 
   return (
     <>
-    <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={LOCALES.RUSSIAN}>
+    <IntlProvider messages={messages[locale]} locale={locale} defaultLocale={LOCALES.ENGLISH}>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
